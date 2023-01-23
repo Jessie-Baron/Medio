@@ -10,8 +10,11 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [imageUrl, setImageUrl] = useState('');
   const [bio, setBio] = useState('');
+  const [clip, setClip] = useState(null);
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [clipLoading, setClipLoading] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -21,15 +24,50 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("clip", clip)
+
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, bio, imageUrl, password));
-      if (data) {
-        setErrors(data);
+      setClipLoading(true);
+      setHasSubmitted(true);
+
+      console.log(formData)
+      const res = await fetch('/api/clips', {
+        method: "POST",
+        body: formData,
+      });
+
+      const res2 = await res.json();
+
+      if (res.ok) {
+        setClipLoading(false);
       }
-    } else {
-      setErrors(['password: Passwords do not match.'])
+      else {
+        setClipLoading(false);
+        setHasSubmitted(false)
+        // error handling
+            }
+
+      const user = {
+        username,
+        email,
+        password,
+        bio,
+        imageUrl: res2.url
+      }
+
+      const data = await dispatch(signUp(user));
+      if (data) {
+        setErrors(data)
+      }
+    }
+    else {
+      setErrors(["Passwords must match"])
+      console.log(errors)
+      return;
     }
   };
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -46,6 +84,11 @@ const SignUpForm = () => {
   const updateImageUrl = (e) => {
     setImageUrl(e.target.value);
   };
+
+    const updateClip = (e) => {
+    const file = e.target.files[0];
+    setClip(file);
+  }
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
@@ -115,14 +158,16 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
+         <center>
+        <h5 className="upload-signup-header">Upload a Profile Picture!</h5>
+        </center>
         <input
-          type="text"
-          name="imageUrl"
-          placeholder="Upload a Picture!"
-          className="width200 signUpMargin"
-          onChange={updateImageUrl}
-          value={imageUrl}
-          required={true}
+            type="file"
+            className="width200 signUpMargin"
+            accept="clip/*"
+            encType="multipart/form-data"
+            onChange={updateClip}
+            required
         ></input>
 
         <button type="submit" className="signUpButton signUpMargin">
