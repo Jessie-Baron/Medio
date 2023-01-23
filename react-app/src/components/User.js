@@ -15,6 +15,7 @@ function User() {
   let followings = useSelector((state) => Object.values(state.follower.following))
   followings = followings.map((user) => user.id)
   const stories = Object.values(storiesObj)
+  console.log("this is the stories array", stories)
   const [following, setFollowing] = useState(followings.includes(parseInt(userId)))
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -96,7 +97,7 @@ function User() {
                               <div className='titleAndLogo'>
                                 <div className='story-author-feed-holder'>
                                   <div>
-                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                    <img src={story.User.image_url} alt="Profile" className="profile-image-splash"></img>
                                   </div>
                                   {/* add link on author name */}
                                   <div className='story-author-feed-container'>
@@ -128,7 +129,7 @@ function User() {
                         <div className="user-sidebar-items">
                           <NavLink to={`/users/${user.id}`} className='profile-link'>
                             <div className="profile-picture">
-                              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                              <img src={user.image_url}
                                 alt="Profile"
                                 className="profile-image"
                               ></img>

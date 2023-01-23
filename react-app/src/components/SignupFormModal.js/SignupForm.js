@@ -8,6 +8,8 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [imageUrl, setImageUrl] = useState('');
+  const [bio, setBio] = useState('');
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector((state) => state.session.user);
@@ -20,7 +22,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, bio, imageUrl, password));
       if (data) {
         setErrors(data);
       }
@@ -35,6 +37,14 @@ const SignUpForm = () => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateBio = (e) => {
+    setBio(e.target.value);
+  };
+
+  const updateImageUrl = (e) => {
+    setImageUrl(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -78,6 +88,15 @@ const SignUpForm = () => {
           value={email}
           required={true}
         ></input>
+        <textarea
+          type="text"
+          name="bio"
+          placeholder="Tell us about yourself"
+          className="width200 signUpMargin"
+          onChange={updateBio}
+          value={bio}
+          required={true}
+        ></textarea>
         <input
           type="password"
           name="password"
@@ -96,6 +115,16 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
+        <input
+          type="text"
+          name="imageUrl"
+          placeholder="Upload a Picture!"
+          className="width200 signUpMargin"
+          onChange={updateImageUrl}
+          value={imageUrl}
+          required={true}
+        ></input>
+
         <button type="submit" className="signUpButton signUpMargin">
           Sign Up
         </button>

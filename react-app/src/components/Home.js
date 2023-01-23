@@ -82,7 +82,7 @@ function Home() {
                                 <div className="story-author">
                                   <div className='story-author-feed-holder'>
                                     <div>
-                                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                      <img src={story.User.image_url} alt="Profile" className="profile-image-splash"></img>
                                     </div>
                                     {/* add link on author name */}
 

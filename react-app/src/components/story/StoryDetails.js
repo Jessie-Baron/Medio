@@ -114,7 +114,7 @@ const StoryDetails = ({ stories }) => {
                                   <div className="user-image-wrapper">
                                     <div className="user-image">
                                       <img
-                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                        src={story.User?.image_url}
                                         alt="Profile"
                                         className="profileImage"
                                       ></img>
@@ -187,7 +187,7 @@ const StoryDetails = ({ stories }) => {
                         <div className="comments-sidebar">
                           <div className="comments-headline">
                             <img
-                              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                              src={user?.image_url}
                               alt="Profile"
                               className="profileImage"
                             ></img>
@@ -278,7 +278,7 @@ const StoryDetails = ({ stories }) => {
                         >
                           <div className="profile-picture">
                             <img
-                              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                              src={story.User?.image_url}
                               alt="Profile"
                               className="profile-image"
                             ></img>

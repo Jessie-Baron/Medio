@@ -15,10 +15,12 @@ export default function StoryFeed() {
 
     if (isLoaded && stories.length >= 6) {
         for (let i = 0; i < 6; i++) {
-            trendingArr.push({ 'body': stories[i].body, 'title': stories[i].title, 'id': stories[i].id, 'user_id': stories[i].user_id })
+            trendingArr.push({ 'body': stories[i].body, 'title': stories[i].title, 'id': stories[i].id, 'user_id': stories[i].user_id, 'image_url': stories[i].User.image_url })
             authorArr.push({ 'username': stories[i].User.username, 'email': stories[i].User.email, 'id': stories[i].User.id })
         }
     }
+
+    console.log("this is the weirdly named array", trendingArr)
 
     useEffect(() => {
         dispatch(storyActions.fetchAllStories())
@@ -50,7 +52,8 @@ export default function StoryFeed() {
                                                         <div className='details'>
                                                             <div className='story-author-container'>
                                                                 <div>
-                                                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                                                    <img src={story.image_url} alt="Profile" className="profile-image-splash"></img>
+                                                                    {console.log(story.User?.image_url)}
                                                                 </div>
                                                                 <div className='author-name'>
                                                                     {/* turn username into link. link goes here */}

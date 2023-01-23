@@ -1,6 +1,6 @@
 #modal-content > div {
     width: 300px;
-    height: 300px;
+    height: 350px;
     padding: 30px;
     display:flex;
     flex-direction: column;

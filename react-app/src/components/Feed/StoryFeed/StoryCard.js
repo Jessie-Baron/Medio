@@ -23,7 +23,7 @@ export default function StoryCard({ stories }) {
                                 <div className="story-author">
                                     <div className='story-author-feed-holder'>
                                         <div>
-                                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                            <img src={story.User.image_url} alt="Profile" className="profile-image-splash"></img>
                                         </div>
                                         <div className='story-author-feed-container'>
                                             <div className='feed-inner-container'>
@@ -40,7 +40,7 @@ export default function StoryCard({ stories }) {
                                 </NavLink>
                             </div>
                             <NavLink className='story-page-link' to={`/stories/${story.id}`}>
-                                <img className='story-image-feed' src={storyImage[i]} /> 
+                                <img className='story-image-feed' src={storyImage[i]} />
                               </NavLink>
                         </div>
                     </div>

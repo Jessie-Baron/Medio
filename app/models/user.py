@@ -24,7 +24,7 @@ if environment == "production":
     follows.schema = SCHEMA
     like_story.schema = SCHEMA
     like_comment.schema = SCHEMA
-    
+
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -34,6 +34,8 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    image_url = db.Column(db.String(255), nullable=True, unique=True)
+    bio = db.Column(db.String(255), nullable=True, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
@@ -78,6 +80,8 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "email": self.email,
+            'bio': self.bio,
+            'image_url': self.image_url,
         }
 
 
