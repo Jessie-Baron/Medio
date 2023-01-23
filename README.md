@@ -2,7 +2,7 @@
 
 Medio is a clone of the existing site Medium, an application where users can post and share stories/articles with the rest of the world.
 
-live site: https://medio.onrender.com
+live site: https://medio-8vx8.onrender.com/
 
 
 ## Wiki Links
