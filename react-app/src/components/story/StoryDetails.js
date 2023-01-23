@@ -119,7 +119,8 @@ const StoryDetails = ({ stories }) => {
                                         className="profileImage"
                                       ></img>
                                       <span>{story.User?.username}</span>
-                                      {story.User?.id === user?.id && (
+                                    </div>
+                                    {story.User?.id === user?.id && (
                                         <div className="flexRow flexEnd">
                                           <button
                                             className="profButtons"
@@ -131,12 +132,12 @@ const StoryDetails = ({ stories }) => {
                                           >
                                             Edit
                                           </button>
+                                          &nbsp;
                                           <button onClick={deleteStory} className="profButtons">
                                             Delete
                                           </button>
                                         </div>
                                       )}
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -219,7 +220,7 @@ const StoryDetails = ({ stories }) => {
                                     className="detailButton1"
                                     onClick={() => handleDelete(comment.id, storyId)}
                                   >
-                                    <i className="fa-solid fa-trash"></i>
+                                    Delete
                                   </div>
                                   <div
                                     id={comment.id}
@@ -235,7 +236,7 @@ const StoryDetails = ({ stories }) => {
                                       setCommentBody(comment.body);
                                     }}
                                   >
-                                    <i className="fa-solid fa-pen"></i>
+                                    Edit
                                   </div>
                                 </div>
                               )}

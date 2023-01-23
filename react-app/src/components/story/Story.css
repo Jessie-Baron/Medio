@@ -31,6 +31,7 @@
 
 .flexEnd {
     justify-content: flex-end;
+    margin-top: 10px;
 }
 
 .heightFitContent {
@@ -173,6 +174,8 @@
 .user-image {
     position: relative;
     display: block;
+    display: flex;
+    gap: 5px;
 }
 
 .story-user-holder {
@@ -349,11 +352,15 @@
     margin-left: 70%;
     margin-top: 20%;
     display: flex;
-    gap: 10px;
 }
 
 .detailButton1 {
-    color: rgb(202, 6, 6)
+    background-color: white;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+    color: red;
+    cursor: pointer;
 }
 
 .detailButton1:hover {
@@ -361,7 +368,11 @@
 }
 
 .detailButton2 {
-    color: rgb(0, 99, 0)
+    background-color: white;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+    cursor: pointer;
 }
 
 .detailButton2:hover {
@@ -560,6 +571,7 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     margin: 0;
+    margin-top: 5px;
     cursor: pointer;
 }
 
@@ -644,10 +656,15 @@ h4 {
 }
 
 .profButtons {
-    background-color: green;
-    width: auto;
-    height: 15px;
-    color: white;
-    border-radius: 20px;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 33px;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
     cursor: pointer;
+   }
+
+   .profButtons:hover {
+    border: 1.2px solid black;
    }
