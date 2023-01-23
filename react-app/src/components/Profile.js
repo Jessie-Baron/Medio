@@ -79,7 +79,7 @@ function Profile() {
                                                 <div className="user-sidebar-items">
                                                     <NavLink to={`/profile`} className='profile-link'>
                                                         <div className="profile-picture">
-                                                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                                            <img src={sessionUser.image_url}
                                                                 alt="Profile"
                                                                 className="profile-image"
                                                             ></img>
