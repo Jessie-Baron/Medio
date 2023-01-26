@@ -51,7 +51,7 @@ const Stories = ({ user }) => {
                             className="writeStory"
                             onClick={() => history.push("/new-story")}
                           >
-                            Write a Story
+                            Publish
                           </button>
                         </div>
                       </div>

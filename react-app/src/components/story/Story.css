@@ -589,12 +589,18 @@
 }
 
 .writeStory {
-    background-color: green;
-    width: 110px;
-    height: 35px;
+    background-color: rgb(29, 159, 29);
+    width: 60px;
+    height: 25px;
     color: white;
     border-radius: 20px;
     cursor: pointer;
+    font-size: 15px;
+    border: none;
+}
+
+.writeStory:hover {
+    background-color: green;
 }
 
 .bottomBorder {

@@ -71,7 +71,7 @@ const StoryForm = () => {
                 <RichEditor2 editorState={editorState} setEditorState={setEditorState} />
               </div>
               <div className="flexRow centerRow">
-                <button type="submit" className="writeStory">Write a Story</button>
+                <button type="submit" className="writeStory">Publish</button>
               </div>
             </form>
           </div>
