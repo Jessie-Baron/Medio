@@ -88,6 +88,7 @@
 
 .action-items {
     display: flex;
+    gap: 25px;
 }
 
 .following-action,
@@ -99,7 +100,14 @@
     display: block;
 }
 
-.for-you-action-clicked,
+.for-you-action-clicked {
+    min-width: max-content;
+    padding-bottom: 16px;
+    display: block;
+    border-bottom: 1px solid rgba(41, 41, 41, 1);
+}
+
+
 .following-action-clicked {
     margin-right: 50px;
     min-width: max-content;

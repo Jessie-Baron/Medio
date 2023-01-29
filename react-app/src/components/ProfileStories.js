@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import SideBar from './SideBar';
+import { storyImage } from '../storyImage';
 import * as followActions from '../store/follower'
+import * as storyActions from "../store/stories";
 import './User.css'
 
 function Profile() {
@@ -10,12 +12,18 @@ function Profile() {
     const sessionUser = useSelector(state => state.session.user)
     const followingUsers = useSelector(state => state.follower.following)
     const followingList = Object.values(followingUsers)
+    const stories = Object.values(useSelector(state => state.stories))
+    const filtered = stories.filter(story => story.User.id === sessionUser.id)
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         dispatch(followActions.followingList(sessionUser.id))
             .then(() => setIsLoaded(true))
     }, [dispatch, isLoaded, sessionUser.id])
+
+    useEffect(() => {
+        dispatch(storyActions.fetchAllStories());
+    }, [dispatch]);
 
     if (!sessionUser) {
         return null;
@@ -41,38 +49,51 @@ function Profile() {
                                                 <div className='action-bar-wrapper'>
                                                     <div className='action-bar'>
                                                         <div className='action-items'>
+                                                            <NavLink to={`/profile`} className='for-you-link' id='for-you-1'>
+                                                                <p className='for-you-link-container'>
+                                                                    <span className='for-you-holder'>
+                                                                        <button className='for-you-button'>Following</button>
+                                                                    </span>
+                                                                </p>
+                                                            </NavLink>
                                                             <div className='for-you-action-clicked'>
-                                                                <NavLink to={`/profile`} className='for-you-link' id='for-you-1'>
-                                                                    <p className='for-you-link-container'>
-                                                                        <span className='for-you-holder'>
-                                                                            <button className='for-you-button'>Following</button>
-                                                                        </span>
-                                                                    </p>
-                                                                </NavLink>
-                                                            </div>
-                                                            <NavLink to={`/profile2`} className='for-you-link' id='for-you-2'>
+                                                                <NavLink to={`/profile2`} className='for-you-link' id='for-you-2'>
                                                                     <p className='for-you-link-container'>
                                                                         <span className='for-you-holder'>
                                                                             <button className='for-you-button'>Stories</button>
                                                                         </span>
                                                                     </p>
-                                                            </NavLink>
+                                                                </NavLink>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <h2>Following List</h2>
+                                                    <h2>Your Stories</h2>
                                                 </div>
-                                                {followingList.map(user => (
-                                                    < div className='profile-page-link-holder'>
-                                                        <NavLink className='profile-page-link-e' to={`/users/${user?.id}`}>
-                                                            <span>{user.username}</span>
-                                                        </NavLink>
-                                                        <div>
-                                                            <button className='following-user-button' onClick={() => { dispatch(followActions.unfollow(sessionUser.id, user.id)) }}>Unfollow</button>
+                                                {filtered.map((story, i) => (
+                                                    <div className='user-stories'>
+                                                      <div className='titleAndLogo'>
+                                                        <div className='story-author-feed-holder'>
+                                                          <div>
+                                                            <img src={story.User.image_url} alt="Profile" className="profile-image-splash"></img>
+                                                          </div>
+                                                          <div className='story-author-feed-container'>
+                                                            <div className='feed-inner-container'>
+                                                              <NavLink className='story-page-link' to={`/users/${story.User.id}`}>
+                                                                <h4 className='feed-author-name'>{story.User.username}</h4>
+                                                              </NavLink>
+                                                            </div>
+                                                          </div>
                                                         </div>
+                                                        <NavLink className='story-page-link' to={`/stories/${story.id}`}><h2>{story?.title}</h2></NavLink>
+                                                      </div>
+                                                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                                        <img className='story-image-feed' alt="user-story" src={storyImage[i]} />
+                                                      </NavLink>
                                                     </div>
-                                                ))}
+                                                  )
+                                                )}
                                             </div>
                                         </div>
                                     </div>

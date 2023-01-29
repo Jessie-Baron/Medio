@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import * as storyActions from "./store/stories"
 import User from "./components/User";
 import Profile from "./components/Profile";
+import ProfileStories from "./components/ProfileStories"
 import { authenticate } from "./store/session";
 import StoryForm from "./components/story/StoryForm";
 import Stories from "./components/story/Stories";
@@ -55,6 +56,9 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path="/profile">
               <Profile />
+            </ProtectedRoute>
+            <ProtectedRoute path="/profile2">
+              <ProfileStories />
             </ProtectedRoute>
             <Route path="/stories" exact={true}>
               <Stories user={user} />
